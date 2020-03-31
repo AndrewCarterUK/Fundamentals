@@ -8,13 +8,13 @@ This repository contains C++ implementations of fundamental algorithms and datas
 
 - [Binary Search Tree](src/binary_search_tree.cpp)
 - [Hash Table](src/hash_table.cpp)
+- [Linked List](src/linked_list.cpp)
 
 ## Todo
 
 ### Data Structures
 - Stack
 - Queue
-- Linked List
 - Doubly Linked List
 - Graph
 - Trie
