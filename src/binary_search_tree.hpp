@@ -1,4 +1,3 @@
-#include <iostream>
 #include <vector>
 
 template<typename T >
@@ -115,10 +114,18 @@ class binary_search_tree
                     }
 
                     if (neighbour) {
-                        if (neighbour->parent) {
-                            // Always a left node as we use leftmost
-                            neighbour->left = node->left;
+                        if (neighbour->parent->left == neighbour) {
                             neighbour->parent->left = nullptr;
+                        } else if (neighbour->parent->right == neighbour) {
+                            neighbour->parent->right = nullptr;
+                        }
+
+                        if (!neighbour->left) {
+                            neighbour->left = node->left;
+                        }
+
+                        if (!neighbour->right) {
+                            neighbour->right = node->right;
                         }
 
                         neighbour->parent = node->parent;
@@ -188,26 +195,3 @@ class binary_search_tree
             }
         }
 };
-
-int main() {
-    std::vector<int> my_list{ 101, 202, 100, 203, 444, 593, 208, 534, 352, 242, 252 };
-    binary_search_tree<int> tree;
-
-    // Test insert
-    for (auto i = 0; i < my_list.size(); i++) {
-        tree.insert(my_list[i]);
-    }
-
-    // Traverse
-    tree.traverse([] (auto node) {
-        std::cout << node->value << '\n';
-    });
-
-
-    // Delete
-    std::cout << "\nLength Before: " << tree.to_vector().size() << '\n';
-    tree.remove(242);
-    std::cout << "Length After: " << tree.to_vector().size() << '\n' << '\n';
-
-    return 0;
-}
